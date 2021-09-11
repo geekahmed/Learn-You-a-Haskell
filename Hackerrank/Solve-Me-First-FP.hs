@@ -1,0 +1,9 @@
+
+
+addTwoNums a b = a + b
+
+main = do
+    val1 <- readLn
+    val2 <- readLn
+    let sum = addTwoNums val1 val2
+    print sum

@@ -30,4 +30,107 @@ This repository presents my learning and reading process for the well-known book
 - Haskell uses a very good type system that has type inference. This means that you don’t need to explicitly label every piece of code with a type.
 - Haskell is elegant and concise. Because it uses a lot of high-level concepts, Haskell programs are usually shorter than their imperative equivalents.
 # Chapter 1. Starting Out
-
+- When using "ghci" for arithmetic operations, we should wrap negative numbers with parentheses.
+	-  For example, entering 5 * -3 will make GHCi yell at you, but entering 5 * (-3) will work just fine. 
+- Haskell has the Boolean values True and False, and uses the && operator for conjunction (Boolean and), the || operator for disjunction (Boolean or), and the not operator to negate a True or False value.
+- We can test two values for equality or inequality with the == and /= operators.
+- == can compare any two literals with the same type only.
+- `5 + 4.0` is a valid expression, because although 4.0 isn’t an integer, 5 is sneaky and can act like either an integer or a floating-point number. In this case, 5 adapts to match the type of the floating-point value 4.0.
+- When calling prefix functions in Haskell, the function name comes first, then a space, then its parameters (also separated by spaces).
+- Function application has the highest precedence of all the operations in Haskell.
+- If a function takes two parameters, we can also call it as an infix function by surrounding its name with backticks (`).
+	- `div 92 10` is equivalent to `92 `\`div\`` 10`
+-  `bar (bar 3)`, it means that we’re first calling the bar function with 3 as the parameter, then passing that result to the bar function again. The equivalent expression in C would be something like `bar(bar(3))`.
+- The syntax of a function definition is similar to that of a function call: the function name is followed by parameters, which are separated spaces. But then the parameter list is followed by the = operator, and the code that makes up the body of the function follows that.
+	- `doubleMe x = x + x`
+- Functions in Haskell don’t have to be defined in any particular order, so it doesn’t matter which function comes first in the "scriptName".hs file.
+- Haskell’s if is an expression that must return a value, and not a statement.
+- We usually use ' to denote either a strict version of a function (i.e., one that isn’t lazy), or a slightly modified version of a function or variable with a similar name.
+-  In Haskell, functions can’t begin with capital letters.
+-  The function that doesn’t take any parameters, we usually call it a definition or a name.
+- Lists in Haskell are homogeneous data structures, which means they store several elements of the same type.
+-  Use the let keyword to define a name in GHCi. Entering let a = 1 in GHCi is equivalent to writing a = 1 in a script, then loading it with :l.
+- ++ operator is used for concatenation.
+	- [1,2,3,4] ++ [9,10,11,12]
+	- [1,2,3,4,9,10,11,12]
+- In Haskell, strings are really just lists of characters. For example, the string "hello" is actually the same as the list ['h','e','l','l','o']. Because of this, we can use list functions on strings, which is really handy.
+- To add something to the beginning of a list, we use the ":" opertator.
+	- 'A':" SMALL CAT"
+	- "A SMALL CAT"
+-  The first argument to the : operator always needs to be a single item of the same type as the values in the list it’s being added to.
+- [], [[]] and [[],[],[]] are all different things. The first is an empty list, the second is a list that contains one empty list, and the third is a list that contains three empty lists.
+- If you want to get an element of a list by index, use the !! operator.
+- Lists within a list can be of different lengths, but they can’t be of different types.
+- Lists can be compared if the items they contain can be compared.
+- The head function takes a list and returns its head, or first element.
+	- head [1,2,3,4]
+	- 1
+- The tail function takes a list and returns its tail. In other words, it chops off a list’s head.
+	- tail [1,2,3,4]
+	- [2,3,4]
+- The last function returns a list’s last element.
+	- last [1,2,3,4]
+	- 4
+- The init function takes a list and returns everything except its last element.
+	- init [1,2,3,4]
+	- [1,2,3]
+- When using head, tail, last, and init, be careful not to use them on empty lists.
+- The length function takes a list and returns its length.
+	- length [1,2,3,4]
+	- 4
+- The null function checks if a list is empty. If it is, it returns True, otherwise it returns False.
+	- null []
+	- True
+- The reverse function reverses a list
+	- reverse [1,2,3,4]
+	- [4,3,2,1]
+- The take function takes a number and a list. It extracts the specified number elements from the beginning of the list.
+	- take 3 [1,2,3,4,5]
+	- [1,2,3]
+- The drop function works in a similar way, only it drops (at most) the specified number of elements from the beginning of a list.
+	- drop 3 [1,2,3]
+	- []
+- The maximum function takes a list of items that can be put in some kind of order and returns the largest element.
+	- minimum is the opposite.
+- The sum function takes a list of numbers and returns their sum.
+- The product function takes a list of numbers and returns their product.
+- The elem function takes an item and a list of items and tells us if that item is an element of the list.
+	- It’s usually called as an infix function because it’s easier to read that way.
+	- 4 \`elem\` [1,2,3,4]
+	- True
+-  Ranges are used to make lists composed of elements that can be enumerated, or counted off in order.
+	- [1..20]
+	- [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+- To make a list with all the numbers from 20 down to 1, you can’t just  type [20..1], you have to type [20,19..1]. When you use a range without steps (like [20..1]), Haskell will start with an empty list and then keep increasing the starting element by one until it reaches or surpasses the end element in the range. Because 20 is already greater than 1, the result will just be an empty list.
+- We can use ranges to make infinite lists by not specifying an upper limit.
+	- [1..]
+	- [1,2,3,4,5,6,7,8...]
+- `cycle` takes a list and replicates its elements indefinitely to form an infinite list.
+	- take 10 (cycle [1,2,3])
+	- [1,2,3,1,2,3,1,2,3,1]
+- `repeat` takes an element and produces an infinite list of just that element.
+- `replicate` is an easier way to create a list composed of a single item. It takes the length of the list and the item to replicate.
+	- replicate 3 10
+	- [10,10,10]
+	- 3 \`replicate\` 10
+	- [10,10,10]
+- List comprehensions are a way to filter, transform, and combine lists.
+	- They are very similar to the math concept set comprehension.
+	- [x*2 | x <- [1..10]]
+	- [2,4,6,8,10,12,14,16,18,20]
+- Predicates go at the end of the list comprehension and are separated from the rest of the comprehension by a comma.
+	- [x*2 | x <- [1..10], x*2 >= 12]
+	- [12,14,16,18,20]
+-  Weeding out parts of lists using predicates is also called filtering.
+- We use underscore (_) as a temporary variable to store the items as we draw them from the input list, since we don’t actually care about the values.
+	- length' xs = sum [1 | _ <- xs]
+- Tuples are used to store several heterogeneous elements as a single value.
+	- They have a fixed size.
+	- (50, 50.4, "hello", 'b')
+	- There is no singleton tuple.
+- fst takes a pair and returns its first component.
+- snd takes a pair and returns its second component.
+- The zip function is a way to produce a list of pairs.
+	- It takes two lists, then “zips” them together into one list by joining the matching elements into pairs.
+	- zip [1,3,4] [3,4,5]
+	- [(1,3),(3,4),(4,5)]
