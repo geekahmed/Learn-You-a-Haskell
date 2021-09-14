@@ -134,3 +134,42 @@ This repository presents my learning and reading process for the well-known book
 	- It takes two lists, then “zips” them together into one list by joining the matching elements into pairs.
 	- zip [1,3,4] [3,4,5]
 	- [(1,3),(3,4),(4,5)]
+
+# Chapter 2. Believe The Type
+- We use ":t" command in order to examine the type of valid expressions.
+	- :t 'a'
+	- 'a' :: Char
+- The :: operator here is read as “has type of.”
+- When writing our own functions, we can choose to give them an explicit type declaration.
+	- removeNonUppercase :: [Char] -> [Char]
+	- removeNonUppercase st = [ c | c <- st, c \`elem\` ['A'..'Z']]
+- Int stands for integer. It’s used for whole numbers. 7 can be an Int, but 7.2 cannot.
+	-  Int is bounded, which means that it has a minimum value and a maximum value.
+- Integer is also used to store integers, but it’s not bounded, so it can be used to represent really big numbers.
+- Float is a real floating-point number with single precision.
+- Double is a real floating-point number with double the precision.
+- Bool is a Boolean type. It can have only two values: True and False.
+- Char represents a Unicode character. It’s denoted by single quotes. A list of characters is a string.
+-  Tuples are types, but their definition depends on their length as well as the types of their components.
+- Type variables allow functions to operate on values of various types in a type-safe manner.
+	- Functions that use type variables are called polymorphic functions.
+- Although type variables can have names that are longer than one character, we usually give them names like a, b, c, d, and so on.
+- A type class is an interface that defines some behavior.
+	- If a type is an instance of a type class, then it supports and implements the behavior the type class describes.
+-  If a function is composed of only special characters, it’s considered an infix function by default.
+- It’s important to note that type classes are not the same as classes in object-oriented programming languages.
+- Eq type class is used for types that support equality testing.
+- Ord is a type class for types whose values can be put in some order.
+- The compare function takes two values whose type is an Ord instance and returns an Ordering. 
+	-  Ordering is a type that can be GT, LT, or EQ, which represent greater than, lesser than, or equal, respectively.
+- Values whose types are instances of the Show type class can be represented as strings.
+- Read can be considered the opposite type class of Show.
+- Type annotations are a way to explicitly tell Haskell what the type of an expression should be.
+	- We do this by adding :: to the end of the expression and then specifying a type.
+- Enum instances are sequentially ordered types, their values can be enumerated.
+- Instances of the Bounded type class have an upper bound and a lower bound, which can be checked by using the minBound and maxBound functions.
+- Num is a numeric type class. Its instances can act like numbers.
+	- To be an instance of Num, a type must already be in Show and Eq.
+- The Floating type class includes the Float and Double types, which are used to store floating-point numbers.
+- Integral is another numeric type class. the Integral class includes only integral (whole) numbers.
+
